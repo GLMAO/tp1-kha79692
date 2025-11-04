@@ -2,6 +2,7 @@ package org.emp.gl.clients;
 
 import org.emp.gl.timer.service.TimerChangeListener;
 import org.emp.gl.timer.service.TimerService;
+import java.beans.PropertyChangeEvent;
 
 public class CompteARebours implements TimerChangeListener {
 
@@ -21,17 +22,13 @@ public class CompteARebours implements TimerChangeListener {
     }
 
     @Override
-    public void propertyChange(String prop, Object oldValue, Object newValue) {
-        if (TimerChangeListener.SECONDE_PROP.equals(prop)) {
-            // Decrement the counter once per second
-            if (compteur > 0) {
-                compteur--;
-                System.out.println(name + " : " + compteur);
-            }
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals(SECONDE_PROP)) {
+            compteur--;
+            System.out.println(name + " : Il reste " + compteur + " secondes");
 
-            // When countdown reaches 0, unsubscribe
-            if (compteur == 0) {
-                System.out.println(name + " terminé !");
+            if (compteur <= 0) {
+                System.out.println("⏰ Temps écoulé pour: "+name+" !");
                 timerService.removeTimeChangeListener(this);
             }
         }
