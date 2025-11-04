@@ -1,24 +1,45 @@
 package org.emp.gl.core.launcher;
 
-import org.emp.gl.clients.Horloge ;
+import java.util.Random;
+import org.emp.gl.clients.Horloge;
+import org.emp.gl.clients.CompteARebours;
+import org.emp.gl.timer.service.TimerService;
+import org.emp.gl.time.service.impl.DummyTimeServiceImpl;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
     public static void main(String[] args) {
+        // Run the test that actually shows the clocks
+        //lancerHorloges();
 
-        testDuTimeService();
+        testCounters();
     }
 
-    private static void testDuTimeService() {
-        Horloge horloge = new Horloge("Num 1") ;
-    }
+    private static void lancerHorloges() {
+        // Create one TimerService (the time source)
+        TimerService timerService = new DummyTimeServiceImpl();
 
-    public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        // Create multiple Horloges (observers)
+        Horloge h1 = new Horloge("A");
+        Horloge h2 = new Horloge("B");
+        Horloge h3 = new Horloge("C");
+
+        // Inject the same service into each
+        h1.setTimerService(timerService);
+        h2.setTimerService(timerService);
+        h3.setTimerService(timerService);
+
+        // DummyTimeServiceImpl runs automatically using its internal Timer
+        // No need to call start()
+    }
+    public static void testCounters(){
+        TimerService timerService = new DummyTimeServiceImpl();
+        Random rand = new Random();
+
+        for (int i = 1; i <= 10; i++) {
+            int valInit = 10 + rand.nextInt(11); // [10,20]
+            CompteARebours c = new CompteARebours("C" + i, valInit);
+            c.setTimerService(timerService);
+        }
     }
 }

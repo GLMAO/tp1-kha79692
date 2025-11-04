@@ -5,6 +5,7 @@
  */
 package org.emp.gl.time.service.impl;
 
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class DummyTimeServiceImpl
     int minutes;
     int secondes;
     int heures;
-    List<TimerChangeListener> listeners = new LinkedList<>();
+    List<TimerChangeListener> listeners = new CopyOnWriteArrayList<>();
 
     /**
      * Constructeur du DummyTimeServiceImpl: ici, 
