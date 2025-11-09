@@ -2,6 +2,7 @@ package org.emp.gl.core.launcher;
 
 import java.util.Random;
 import org.emp.gl.clients.Horloge;
+import org.emp.gl.clients.HorlogeUI;
 import org.emp.gl.clients.CompteARebours;
 import org.emp.gl.timer.service.TimerService;
 import org.emp.gl.time.service.impl.DummyTimeServiceImpl;
@@ -12,7 +13,12 @@ public class App {
         // Run the test that actually shows the clocks
         //lancerHorloges();
 
-        testCounters();
+        //testCounters();
+
+        DummyTimeServiceImpl timeService = new DummyTimeServiceImpl();
+        new HorlogeUI(timeService);
+
+
     }
 
     private static void lancerHorloges() {
