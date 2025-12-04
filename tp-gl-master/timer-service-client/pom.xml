@@ -10,6 +10,11 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
+            <groupId>com.example.lookup</groupId>
+            <artifactId>lookup-module</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <artifactId>timer-service</artifactId>
             <groupId>org.emp.gl</groupId>
             <version>0.0.1</version>

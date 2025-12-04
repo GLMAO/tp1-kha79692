@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/tp-gl-master/pom.xml" />
+        <option value="$PROJECT_DIR$/lookup-module/pom.xml" />
       </list>
     </option>
   </component>
